@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% extends 'AdminIndex.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Display Doctors Details</h4>
+                    </p>
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th> Doctor Name </th>
+                            <th> Department Name </th>
+                            <th> Speciality </th>
+                            <th> About </th>
+                            <th> Image </th>
+                              <th> Overview </th>
+                              <th> Awards and recognitions </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for d in data %}
+                          <tr>
+                            <td>{{d.DoctorName}}</td>
+                            <td>{{d.DepartmentName}}</td>
+                            <td>{{d.Speciality}}</td>
+                            <td>{{d.About}}</td>
+                            <td class="py-1">
+                              <img src="{{d.Image.url}}">
+                            </td>
+                            <td>{{d.Overview}}</td>
+                            <td>{{d.Awards_Recognition}}</td>
+                            <td>
+                              <form action="{% url 'editdoctordetails' dataid=d.id %}">
+                                <button type="submit" style="background-color:green;color:white;width:80px;height:30px;border-radius:7px" id="edit">Edit</button>
+                              </form>
+                              <form action="{% url 'deletedoctordetails' dataid=d.id %}">
+                                <button type="submit" style="background-color:green;color:white;width:80px;height:30px;border-radius:7px" id="delete">Delete</button>
+                              </form>
+                            </td>
+
+
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+</body>
+</html>
+{% endblock %}

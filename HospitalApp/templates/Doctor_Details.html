@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% extends 'AdminIndex.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Add Doctors Details</h4>
+                    <form class="forms-sample" method="POST" action="{% url 'save_doctor_details' %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="form-group">
+                        <label for="exampleInputName1">Doctor's Name</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Doctor's Name" name="name1">
+                      </div>
+                         <div class="form-group">
+                        <label>Department</label>
+                        <select class="form-control" name="name2">
+                          <option>Select Department</option>
+                          {% for d in data %}
+                          <option>{{d.DepartmentName}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                        <div class="form-group">
+                        <label for="exampleInputName3">Speciality</label>
+                        <input type="text" class="form-control" id="exampleInputName3" placeholder="" name="speciality">
+                      </div>
+                        <div class="form-group">
+                        <label for="exampleTextarea1">About</label>
+                        <textarea class="form-control" id="exampleTextarea1" rows="4" name="about"></textarea>
+                      </div>
+
+
+                      <div class="form-group">
+                        <label>Doctor's Photo</label>
+                        <input type="file" name="image" class="file-upload">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleTextarea2">Overview</label>
+                        <textarea class="form-control" id="exampleTextarea2" rows="4" name="overview"></textarea>
+                      </div>
+                        <div class="form-group">
+                        <label for="exampleTextarea3">Awards and recognitions</label>
+                        <textarea class="form-control" id="exampleTextarea3" rows="4" name="awards"></textarea>
+                      </div>
+
+
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      <button class="btn btn-dark">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+</body>
+</html>
+{% endblock %}
